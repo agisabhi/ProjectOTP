@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [AuthController::class, "login"]);
+Route::get('/login_otp', [AuthController::class, "login_otp"]);
+Route::post('/login_otp_action', [AuthController::class, "login_otp_action"]);
+Route::get('/otp/{user_id}', [AuthController::class, "otp"]);
+Route::post('/otp_action', [AuthController::class, "otp_action"]);
+Route::get('/admin', [AdminController::class, "index"]);
